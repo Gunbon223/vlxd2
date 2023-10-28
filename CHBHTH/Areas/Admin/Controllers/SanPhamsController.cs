@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -124,10 +125,20 @@ namespace CHBHTH.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SanPham sanPham = db.SanPhams.Find(id);
-            db.SanPhams.Remove(sanPham);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                SanPham sanPham = db.SanPhams.Find(id);
+                db.SanPhams.Remove(sanPham);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log or handle the exception
+                string errorMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                // Handle the error appropriately, such as displaying an error message to the user
+                return View("Error", errorMessage);
+            }
         }
 
         protected override void Dispose(bool disposing)
