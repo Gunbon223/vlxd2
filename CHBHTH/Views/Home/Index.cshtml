@@ -1,22 +1,23 @@
 ﻿@{
-    ViewBag.Title = "Quẩn lý vật liệu";
+    ViewBag.Title = "Quản lý vật liệu";
 
     Layout = "~/Views/Shared/_LayoutClient2.cshtml";
 }
 @using CHBHTH.Models;
 
 
-<br />
 <header class="bg-body py-0">
-    <center>
+    <div class="container">
         <div class="row">
-            <div class="col-md-16">
-                <img src="~/Images/TRANG-CHU-1.jpg" width="95%" />
+            <div class="col-md-12">
+                <center>
+                    <img src="~/Images/index_2.jpg" class="img-responsive" style="width: 100%; height: auto;" />
+                </center>
             </div>
         </div>
-    </center>
+    </div>
 </header>
-<br />
+@*<br />
 <div class="spnoibat">
     <center>
         <div class="row">
@@ -31,7 +32,7 @@
             </div>
         </div>
     </center>
-</div> <br />
+</div> <br />*@
 
     @Html.Action("suapartial", "sanpham")
 
